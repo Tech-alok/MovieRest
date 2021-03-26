@@ -22,7 +22,6 @@ import com.RestApi.Repo.ActorRepository;
 import com.RestApi.Repo.MovieRepository;
 
 @RestController
-@RequestMapping("/actors")
 public class actor {
 
 	@Autowired
