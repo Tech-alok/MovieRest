@@ -37,17 +37,17 @@ public class actor {
 		}
 	}
 
-	@PostMapping("")
+	@PostMapping("/actors")
 	public Actor createActor(@Valid @RequestBody Actor actor) {
 		return actorRepository.save(actor);
 	}
 
-	@GetMapping("")
+	@GetMapping("/actors")
 	List<Actor> getActors() {
 		return actorRepository.findAll();
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping("/actors/{id}")
 	public Actor updateActor(@PathVariable(value = "id") int actorId, @Valid @RequestBody Actor actorRequest) {
 		this.actorValidation(actorId);
 		Actor actor = actorRepository.findById(actorId);
@@ -58,13 +58,13 @@ public class actor {
 
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/actors/{id}")
 	public Actor getActor(@PathVariable("id") int actorId) {
 		actorValidation(actorId);
 		return actorRepository.findById(actorId);
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/actors/{id}")
 	public ResponseEntity<?> deleteActor(@PathVariable("id") int actorId) {
 		this.actorValidation(actorId);
 
@@ -72,7 +72,7 @@ public class actor {
 		return ResponseEntity.ok().build();
 	}
 
-	@PutMapping("/{id}/movies")
+	@PutMapping("actors/{id}/movies")
 	public Actor putActorMovies(@Valid @PathVariable(value="id") int actorId, @RequestBody HashMap<String, ArrayList<Integer>> movies) {
 		this.actorValidation(actorId);
 		 ArrayList<Integer> movieIds = movies.get(movies);
@@ -87,7 +87,7 @@ public class actor {
 		return actorRepository.save(actor);
 	}
 
-	@DeleteMapping("/{id}/movies")
+	@DeleteMapping("actors/{id}/movies")
 	public Actor deleteActorMovies(@Valid @PathVariable(value = "id") int actorId,
 			@RequestBody HashMap<String, ArrayList<Integer>> movies) {
 		ArrayList<Integer> movieIds = movies.get("movies");
